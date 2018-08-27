@@ -6,7 +6,7 @@
     (area 117.442857 47.524999 175.557143 99.275)
     (thickness 1.6)
     (drawings 5)
-    (tracks 148)
+    (tracks 145)
     (zones 0)
     (modules 23)
     (nets 14)
@@ -37,7 +37,7 @@
   )
 
   (setup
-    (last_trace_width 0.8)
+    (last_trace_width 0.25)
     (user_trace_width 0.6)
     (user_trace_width 0.8)
     (trace_clearance 0.2)
@@ -1392,9 +1392,6 @@
   (segment (start 148 84) (end 143.4 84) (width 0.8) (layer B.Cu) (net 3) (status 10))
   (segment (start 152.5 84) (end 148 84) (width 0.8) (layer B.Cu) (net 3) (status 10))
   (segment (start 167.5 85.5) (end 168 85.5) (width 0.8) (layer B.Cu) (net 4))
-  (via (at 163.5 85.5) (size 1.6) (drill 0.8) (layers F.Cu B.Cu) (net 4))
-  (segment (start 168 85.5) (end 163.5 85.5) (width 0.8) (layer F.Cu) (net 4) (tstamp 5B813AD4))
-  (via (at 168 85.5) (size 1.6) (drill 0.8) (layers F.Cu B.Cu) (net 4))
   (segment (start 134.5 78) (end 135 78) (width 0.8) (layer B.Cu) (net 4) (status 10))
   (segment (start 134.5 71) (end 135 71) (width 0.8) (layer B.Cu) (net 4) (status 10))
   (segment (start 132.27 58.3) (end 132.27 61.77) (width 0.8) (layer B.Cu) (net 4))

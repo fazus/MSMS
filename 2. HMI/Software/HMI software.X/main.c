@@ -2,6 +2,8 @@
 #include <xc.h>
 #include <sys/attribs.h>   
 #include <sys/kmem.h>
+#include <stdio.h>
+
 // USERID = No Setting
 #pragma config PMDL1WAY = OFF           // Peripheral Module Disable Configuration (Allow only one reconfiguration)
 #pragma config IOL1WAY = OFF             // Peripheral Pin Select Configuration (Allow only one reconfiguration)
@@ -187,17 +189,37 @@ char val[8];
 
 
 
-
 #define CPU_CLOCK          (80000000ul)
 #define PBUS_CLOCK         (CPU_CLOCK/2)
 #define UBRG(baud) (((PBUS_CLOCK)/4/(baud)-1))
 #define UART1_BAUD           500000
 
+
+
+void update_LCD(void);
+
+
+
 char UART_TX[64]= "CHUJ";
 char UART_RX[64];
 char burnox=0;
 int kutasss=0;
-void main(){
+
+void send_spi(char data);
+void L_pulse(void);
+void clock_pulse(void);
+void smr(void);
+void enc_butt_init(void);
+void lcd_init(void);
+void draw_pixel(void);
+void draw_v_line(unsigned char l);
+void draw(void);
+void get_raw_input(void);
+void force_dma_uart(void);
+void inicjalizacja(void);
+void draw_h_line(unsigned char l);
+
+void main(void){
     inicjalizacja();
     
     
@@ -319,7 +341,7 @@ void dma_init(void){
 
 
 
-void inicjalizacja(){
+void inicjalizacja(void){
     asm volatile("di");              
     asm volatile("ehb");              
 
@@ -348,12 +370,12 @@ void inicjalizacja(){
     dma_init();   
 }
 
-void force_dma_uart(){
+void force_dma_uart(void){
 DCH1ECONbits.CFORCE =1;    
 DCH1CONbits.CHEN = 1;
 DCH1SSA = KVA_TO_PA(UART_TX);
 }
-void get_raw_input()
+void get_raw_input(void)
 {
             if(switch_port);
             else slide_sw_buff= slide_sw_buff | (0x01<<chuj1);
@@ -513,7 +535,7 @@ void draw_pixel(void){
     yy=y>>3;
     graphic_buffer[(!lcd_flag.witch_lcd_page)*1023+x+(128*yy)]|=0x01<<(y-(yy<<3));
 }
-void lcd_init(){
+void lcd_init(void){
     TRISBbits.TRISB7 = 0; //CS1B
     TRISBbits.TRISB12 = 0; //A0
     TRISBbits.TRISB11 = 0; //RST
@@ -622,7 +644,7 @@ void enc_butt_init(void){
 
 }
 char bgf=0;
-void smr(){
+void smr(void){
 if(bgf==8){DATAa=0;  bgf=0;}
 else DATAa=1;
     clock_pulse();
@@ -642,7 +664,6 @@ void _mon_putc(char c)
 write_char(c);
 x+=8;
 }
-
 
 
 void send_spi(char data){

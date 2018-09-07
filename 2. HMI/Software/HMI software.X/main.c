@@ -200,7 +200,7 @@ void update_LCD(void);
 
 
 
-char UART_TX[64]= "CHUJ";
+char UART_TX[8];
 char UART_RX[64];
 char burnox=0;
 int kutasss=0;
@@ -233,14 +233,17 @@ void main(void){
     while(1){
         
 
-        for(k=0;k<7;k++)UART_TX[k]=enc_value[k];
     chuj++;
-            get_raw_input(); 
+            get_raw_input() ;
             if(chuj>100){chuj=0;
             
+         for(k=0;k<8;k++) UART_TX[k]=enc_value[k];
+        if(slide_sw_reg&0x01 && burnox==0)
+        {
+        burnox=1;
+        force_dma_uart();
+        }
             
-        if(slide_sw_reg&0x01 && burnox==0){
-    burnox=1;force_dma_uart();}
         if(!slide_sw_reg&0x01)burnox=0;
             
             
@@ -270,7 +273,9 @@ void __ISR(_DMA_0_VECTOR,IPL3AUTO)__DMA0Interrupt(void){
     A0=1;
     DCH0SSA = KVA_TO_PA(&graphic_buffer[(lcd_flag.witch_lcd_page*1023)+(128*lcd_page)]);
     if(lcd_page){
-    force_dma_uart();}
+    DCH0CONbits.CHEN = 1;
+    DCH0ECONbits.CFORCE =1; 
+    }
     if(++lcd_page > 7)lcd_page=0;
     
 }
@@ -307,8 +312,8 @@ void dma_init(void){
     DCH1ECONbits.CHSIRQ = _UART1_TX_IRQ;
     DCH1ECONbits.SIRQEN = 1;
     DCH1DSA=KVA_TO_PA(&U1TXREG);
-    DCH1SSA = KVA_TO_PA(UART_TX);
-    DCH1SSIZ=64;
+    DCH1SSA = KVA_TO_PA(&UART_TX[0]);
+    DCH1SSIZ=8;
     DCH1DSIZ=1;
     DCH1CSIZ=1;
     
@@ -321,22 +326,8 @@ void dma_init(void){
     IFS1CLR = _IFS1_DMA2IF_MASK;                /* Make sure Interrupt Flag is clear before Enable */
 //   IEC1SET = _IEC1_DMA2IE_MASK; 
     
-  
-    DCH2ECONbits.CHSIRQ = _UART1_RX_IRQ;
-    DCH2ECONbits.SIRQEN = 1;
-    DCH2SSA=KVA_TO_PA(&U1RXREG);
-    DCH2DSA = KVA_TO_PA(UART_RX);
-    DCH2SSIZ=1;
-    DCH2DSIZ=64;
-    DCH2CSIZ=1;
-    
-    DCH2INTCLR = 0x00FF00FF;
-    DCH2INTbits.CHBCIE=1;
-  //  DCH2CONbits.CHEN = 1;
-    
-    
-    
-    
+
+
 }
 
 
@@ -354,7 +345,7 @@ void inicjalizacja(void){
     U1RXR=0; //RPA2 UART RX
 
     U1MODE = 0;   
-    U1BRG = 0;//UBRG(UART1_BAUD); 
+    U1BRG = UBRG(UART1_BAUD); 
 
     IFS1bits.U1TXIF = 0; 
     IEC1bits.U1TXIE = 0;   
@@ -371,9 +362,9 @@ void inicjalizacja(void){
 }
 
 void force_dma_uart(void){
-DCH1ECONbits.CFORCE =1;    
+DCH1SSA = KVA_TO_PA(&UART_TX[0]);
 DCH1CONbits.CHEN = 1;
-DCH1SSA = KVA_TO_PA(UART_TX);
+DCH1ECONbits.CFORCE =1;    
 }
 void get_raw_input(void)
 {

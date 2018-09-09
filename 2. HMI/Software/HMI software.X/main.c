@@ -189,18 +189,17 @@ char val[8];
 
 
 
-#define CPU_CLOCK          (80000000ul)
-#define PBUS_CLOCK         (CPU_CLOCK/2)
-#define UBRG(baud) (((PBUS_CLOCK)/4/(baud)-1))
-#define UART1_BAUD           500000
-
-
 
 void update_LCD(void);
 
 
+#define CPU_CLOCK          (80000000ul)
+#define PBUS_CLOCK         (CPU_CLOCK/2)
+#define UBRG(baud) (((PBUS_CLOCK)/4/(baud)-1))
+#define UART1_BAUD           9600 
 
-char UART_TX[8];
+
+short UART_TX[8];
 char UART_RX[64];
 char burnox=0;
 int kutasss=0;
@@ -227,8 +226,6 @@ void main(void){
     INTCONbits.MVEC = 1;
     asm volatile("ei");
     
-    
-    for(k=0;k<2048;k++)graphic_buffer[k]=0xAA;  
 
     while(1){
         
@@ -236,8 +233,10 @@ void main(void){
     chuj++;
             get_raw_input() ;
             if(chuj>100){chuj=0;
-            
-         for(k=0;k<8;k++) UART_TX[k]=enc_value[k];
+       
+            for(k=0;k<8;k++) UART_TX[k]=enc_value[k];
+            UART_TX[7]|=0x100;
+        
         if(slide_sw_reg&0x01 && burnox==0)
         {
         burnox=1;
@@ -313,18 +312,15 @@ void dma_init(void){
     DCH1ECONbits.SIRQEN = 1;
     DCH1DSA=KVA_TO_PA(&U1TXREG);
     DCH1SSA = KVA_TO_PA(&UART_TX[0]);
-    DCH1SSIZ=8;
-    DCH1DSIZ=1;
-    DCH1CSIZ=1;
+    DCH1SSIZ=16;
+    DCH1DSIZ=2;
+    DCH1CSIZ=2;
     
     DCH1INTCLR = 0x00FF00FF;
     DCH1INTbits.CHBCIE=1;
-    
-    DCH1CONbits.CHEN = 1;
-    
     IPC10SET = 3 << _IPC10_DMA2IP_POSITION;        
     IFS1CLR = _IFS1_DMA2IF_MASK;                /* Make sure Interrupt Flag is clear before Enable */
-//   IEC1SET = _IEC1_DMA2IE_MASK; 
+    IEC1SET = _IEC1_DMA2IE_MASK; 
     
 
 
@@ -338,7 +334,8 @@ void inicjalizacja(void){
 
     enc_butt_init();
     lcd_init();
-
+    
+    
     TRISAbits.TRISA0 = 0; //UART TX
     TRISAbits.TRISA2 = 1; //UART RX
     RPA0R=1; //RPA0 UART TX 
@@ -347,18 +344,23 @@ void inicjalizacja(void){
     U1MODE = 0;   
     U1BRG = UBRG(UART1_BAUD); 
 
+
     IFS1bits.U1TXIF = 0; 
     IEC1bits.U1TXIE = 0;   
     IPC8bits.U1IP = 2;
-    IPC8bits.U1IS = 2;
+    IPC8bits.U1IS = 2; 
+
     U1STAbits.UTXISEL = 0x01; 
     U1STAbits.UTXEN = 1; 
     U1STAbits.URXEN = 1; 
+    
+    U1MODEbits.PDSEL = 3; 
     U1MODEbits.ON = 1; 
     
     
-    
     dma_init();   
+    for(k=0;k<2048;k++)graphic_buffer[k]=0xAA;  
+    
 }
 
 void force_dma_uart(void){
@@ -476,6 +478,15 @@ void draw(void){
     printf("%d",burnox);
     
     
+    x=100;
+    y=42;
+    printf("%d",slide_sw_reg);
+    
+    x=100;
+    y=49;
+    printf("%d",enc_sw_reg);
+    
+    
     
     x=1;
     y=30;
@@ -582,6 +593,9 @@ void lcd_init(void){
     send_spi(0x00);  
     send_spi(0xAF); 
     A0=1; 
+    
+    
+    
 }
 void enc_butt_init(void){
     //ports are output

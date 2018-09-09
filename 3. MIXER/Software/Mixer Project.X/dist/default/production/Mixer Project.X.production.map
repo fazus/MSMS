@@ -86,11 +86,11 @@ Program Memory  [Origin = 0x200, Length = 0x15600]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x232           0x34b  (843)
-.text                        0x432               0x492           0x6db  (1755)
-.dinit                       0x8c4                0x14            0x1e  (30)
+.text                        0x200               0x268           0x39c  (924)
+.text                        0x468               0x4c0           0x720  (1824)
+.dinit                       0x928                0x14            0x1e  (30)
 
-                 Total program memory used (bytes):          0xa44  (2628) 2%
+                 Total program memory used (bytes):          0xada  (2778) 2%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0xfc]
@@ -98,6 +98,7 @@ Ivt Memory  [Origin = 0x4, Length = 0xfc]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .ivt._DMA0Interrupt           0x1c                 0x2             0x3  (3)
+.ivt._U1RXInterrupt           0x2a                 0x2             0x3  (3)
 .ivt._ADC1Interrupt           0x2e                 0x2             0x3  (3)
 .ivt._DAC1RInterrupt          0xb0                 0x2             0x3  (3)
 .ivt._DAC1LInterrupt          0xb2                 0x2             0x3  (3)
@@ -107,11 +108,11 @@ Data Memory  [Origin = 0x800, Length = 0x4000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0            0x16  (22)
-.bss                         0x816                   0          0x190c  (6412)
-_06A4AA805b9243f3           0x47f0                   0            0x10  (16)
+.nbss                        0x800                   0            0x18  (24)
+.bss                         0x818                   0          0x1914  (6420)
+_069AAB405b9544ff           0x47f0                   0            0x10  (16)
 
-                 Total data memory used (bytes):         0x1932  (6450) 39%
+                 Total data memory used (bytes):         0x193c  (6460) 39%
 
 
 Dynamic Memory Usage
@@ -119,50 +120,56 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x2122                              0x26ce  (9934)
+stack                       0x212c                              0x26c4  (9924)
 
-                 Maximum dynamic memory (bytes):         0x26ce  (9934)
+                 Maximum dynamic memory (bytes):         0x26c4  (9924)
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0800                  _i
+                    0x0800                  _kupa
                     0x0802                  _kutas
-                    0x0804                  _cipa
-                    0x0806                  _pipa
-                    0x0808                  _pipa1
-                    0x080a                  _zero
-                    0x080c                  _pipa_q6
-                    0x0810                  _OP_FM_state
-                    0x0812                  _k
-                    0x0814                  _trig
-                    0x0816                  _AnalogInput
-                    0x0826                  _sins_table
-                    0x1026                  _saw_table
-                    0x1826                  _triangle_table
-                    0x2026                  _phase
-                    0x2032                  _op_fm
+                    0x0803                  _moc
+                    0x0804                  _i
+                    0x0806                  _cipa
+                    0x0808                  _pipa
+                    0x080a                  _pipa1
+                    0x080c                  _zero
+                    0x080e                  _pipa_q6
+                    0x0812                  _OP_FM_state
+                    0x0814                  _k
+                    0x0816                  _trig
+                    0x0818                  _AnalogInput
+                    0x0828                  _sins_table
+                    0x1028                  _saw_table
+                    0x1828                  _triangle_table
+                    0x2028                  _phase
+                    0x2034                  _RX_BUFF
+                    0x203c                  _op_fm
                     0x47f0                  _BufferA
 
 External Symbols in Data Memory (by name):
 
-                    0x0816                  _AnalogInput
+                    0x0818                  _AnalogInput
                     0x47f0                  _BufferA
-                    0x0810                  _OP_FM_state
-                    0x0804                  _cipa
-                    0x0800                  _i
-                    0x0812                  _k
+                    0x0812                  _OP_FM_state
+                    0x2034                  _RX_BUFF
+                    0x0806                  _cipa
+                    0x0804                  _i
+                    0x0814                  _k
+                    0x0800                  _kupa
                     0x0802                  _kutas
-                    0x2032                  _op_fm
-                    0x2026                  _phase
-                    0x0806                  _pipa
-                    0x0808                  _pipa1
-                    0x080c                  _pipa_q6
-                    0x1026                  _saw_table
-                    0x0826                  _sins_table
-                    0x1826                  _triangle_table
-                    0x0814                  _trig
-                    0x080a                  _zero
+                    0x0803                  _moc
+                    0x203c                  _op_fm
+                    0x2028                  _phase
+                    0x0808                  _pipa
+                    0x080a                  _pipa1
+                    0x080e                  _pipa_q6
+                    0x1028                  _saw_table
+                    0x0828                  _sins_table
+                    0x1828                  _triangle_table
+                    0x0816                  _trig
+                    0x080c                  _zero
 
 External Symbols in Program Memory (by address):
 
@@ -171,52 +178,54 @@ External Symbols in Program Memory (by address):
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
                   0x0002c8                  __DAC1RInterrupt
-                  0x0002f8                  __DAC1LInterrupt
-                  0x000300                  __ADC1Interrupt
-                  0x000308                  __DMA0Interrupt
-                  0x000330                  __DefaultInterrupt
-                  0x000334                  __Q15add
-                  0x000340                  __Q15sinPI
-                  0x00041a                  __Q16mpy
-                  0x000432                  _main
-                  0x000564                  _dds_arrays_prep
-                  0x000592                  _get_op_output
-                  0x00059e                  _OP_FM
-                  0x00071e                  _sample
-                  0x00078e                  _wave_assemble
-                  0x000798                  _ExampleLocalFunction
-                  0x0007a2                  _filtr
-                  0x0007ac                  _config
+                  0x0002fa                  __U1RXInterrupt
+                  0x00032e                  __DAC1LInterrupt
+                  0x000336                  __ADC1Interrupt
+                  0x00033e                  __DMA0Interrupt
+                  0x000366                  __DefaultInterrupt
+                  0x00036a                  __Q15add
+                  0x000376                  __Q15sinPI
+                  0x000450                  __Q16mpy
+                  0x000468                  _main
+                  0x000598                  _dds_arrays_prep
+                  0x0005c6                  _get_op_output
+                  0x0005d2                  _OP_FM
+                  0x000752                  _sample
+                  0x0007c2                  _wave_assemble
+                  0x0007cc                  _ExampleLocalFunction
+                  0x0007d6                  _filtr
+                  0x0007e0                  _config
                   0xf80000                  __FBS.sec
                   0xf80002                  __FSS.sec
                   0xf80004                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x000798                  _ExampleLocalFunction
-                  0x00059e                  _OP_FM
-                  0x000300                  __ADC1Interrupt
-                  0x0002f8                  __DAC1LInterrupt
+                  0x0007cc                  _ExampleLocalFunction
+                  0x0005d2                  _OP_FM
+                  0x000336                  __ADC1Interrupt
+                  0x00032e                  __DAC1LInterrupt
                   0x0002c8                  __DAC1RInterrupt
-                  0x000308                  __DMA0Interrupt
-                  0x000330                  __DefaultInterrupt
+                  0x00033e                  __DMA0Interrupt
+                  0x000366                  __DefaultInterrupt
                   0xf80000                  __FBS.sec
                   0xf80004                  __FGS.sec
                   0xf80002                  __FSS.sec
-                  0x000334                  __Q15add
-                  0x000340                  __Q15sinPI
-                  0x00041a                  __Q16mpy
+                  0x00036a                  __Q15add
+                  0x000376                  __Q15sinPI
+                  0x000450                  __Q16mpy
+                  0x0002fa                  __U1RXInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0007ac                  _config
-                  0x000564                  _dds_arrays_prep
-                  0x0007a2                  _filtr
-                  0x000592                  _get_op_output
-                  0x000432                  _main
-                  0x00071e                  _sample
-                  0x00078e                  _wave_assemble
+                  0x0007e0                  _config
+                  0x000598                  _dds_arrays_prep
+                  0x0007d6                  _filtr
+                  0x0005c6                  _get_op_output
+                  0x000468                  _main
+                  0x000752                  _sample
+                  0x0007c2                  _wave_assemble
 
 Memory Configuration
 
@@ -277,7 +286,7 @@ LOAD c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x232
+.text             0x000200        0x268
  *(.init)
  .init            0x000200         0x4c c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -289,27 +298,28 @@ LOAD c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002c8         0x68 build/default/production/main.o
+ .isr.text        0x0002c8         0x9e build/default/production/main.o
                   0x0002c8                  __DAC1RInterrupt
-                  0x0002f8                  __DAC1LInterrupt
-                  0x000300                  __ADC1Interrupt
-                  0x000308                  __DMA0Interrupt
- .isr             0x000330          0x4 default_isr
-                  0x000330                  __DefaultInterrupt
+                  0x0002fa                  __U1RXInterrupt
+                  0x00032e                  __DAC1LInterrupt
+                  0x000336                  __ADC1Interrupt
+                  0x00033e                  __DMA0Interrupt
+ .isr             0x000366          0x4 default_isr
+                  0x000366                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
- .libq            0x000334          0xc C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_Add_1_15.eo)
-                  0x000334                  __Q15add
- .libq            0x000340         0xda C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_SinPI_1_15.eo)
-                  0x000340                  sinPI::sinPI(void)
- .libqn           0x00041a         0x16 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(mpy16.eo)
-                  0x00041a                  __Q16mpy
+ .libq            0x00036a          0xc C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_Add_1_15.eo)
+                  0x00036a                  __Q15add
+ .libq            0x000376         0xda C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_SinPI_1_15.eo)
+                  0x000376                  sinPI::sinPI(void)
+ .libqn           0x000450         0x16 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(mpy16.eo)
+                  0x000450                  __Q16mpy
  .libpic30_crt_start_mode
-                  0x000430          0x2 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
-                  0x000430                  __crt_start_mode
-                  0x000430                  __crt_start_mode_normal
+                  0x000466          0x2 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+                  0x000466                  __crt_start_mode
+                  0x000466                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -359,31 +369,31 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x2709
+.debug_info       0x000000       0x2e91
  *(.debug_info)
- .debug_info      0x000000       0x1c0e build/default/production/conf.o
- .debug_info      0x001c0e        0xafb build/default/production/main.o
+ .debug_info      0x000000       0x22fc build/default/production/conf.o
+ .debug_info      0x0022fc        0xb95 build/default/production/main.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x2d0
+.debug_abbrev     0x000000        0x2da
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0xe0 build/default/production/conf.o
- .debug_abbrev    0x0000e0        0x1f0 build/default/production/main.o
+ .debug_abbrev    0x0000e0        0x1fa build/default/production/main.o
 
-.debug_line       0x000000        0x254
+.debug_line       0x000000        0x264
  *(.debug_line)
- .debug_line      0x000000         0xd7 build/default/production/conf.o
- .debug_line      0x0000d7        0x17d build/default/production/main.o
+ .debug_line      0x000000         0xe1 build/default/production/conf.o
+ .debug_line      0x0000e1        0x183 build/default/production/main.o
 
-.debug_frame      0x000000        0x1cc
+.debug_frame      0x000000        0x1fe
  *(.debug_frame)
  .debug_frame     0x000000         0x68 build/default/production/conf.o
- .debug_frame     0x000068        0x164 build/default/production/main.o
+ .debug_frame     0x000068        0x196 build/default/production/main.o
 
-.debug_str        0x000000        0x126
+.debug_str        0x000000        0x150
  *(.debug_str)
- .debug_str       0x000000         0xdf build/default/production/conf.o
- .debug_str       0x0000df         0x47 build/default/production/main.o
+ .debug_str       0x000000        0x109 build/default/production/conf.o
+ .debug_str       0x000109         0x47 build/default/production/main.o
 
 .debug_loc
  *(.debug_loc)
@@ -392,12 +402,12 @@ __FUID3
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x1b6
+                  0x000000        0x1e6
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x40 build/default/production/conf.o
  .debug_pubnames
-                  0x000040        0x176 build/default/production/main.o
+                  0x000040        0x1a6 build/default/production/main.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1386,56 +1396,59 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000030        0x313
+                  0x000030        0x393
  .debug_pubtypes
-                  0x000030        0x260 build/default/production/conf.o
+                  0x000030        0x2e0 build/default/production/conf.o
  .debug_pubtypes
-                  0x000290         0xb3 build/default/production/main.o
+                  0x000310         0xb3 build/default/production/main.o
 
 __c30_signature
-                  0x000343         0x2a
+                  0x0003c3         0x2a
  __c30_signature
-                  0x000343          0x6 build/default/production/conf.o
+                  0x0003c3          0x6 build/default/production/conf.o
  __c30_signature
-                  0x000349          0x6 build/default/production/main.o
+                  0x0003c9          0x6 build/default/production/main.o
  __c30_signature
-                  0x00034f          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_Add_1_15.eo)
+                  0x0003cf          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_Add_1_15.eo)
  __c30_signature
-                  0x000355          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_SinPI_1_15.eo)
+                  0x0003d5          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_SinPI_1_15.eo)
  __c30_signature
-                  0x00035b          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(mpy16.eo)
+                  0x0003db          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(mpy16.eo)
  __c30_signature
-                  0x000361          0x6 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x0003e1          0x6 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000367          0x6 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x0003e7          0x6 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
 
-_06A4AA805b9243f3
+_069AAB405b9544ff
                     0x47f0         0x10
- _06A4AA805b9243f3
+ _069AAB405b9544ff
                     0x47f0         0x10 build/default/production/main.o
                     0x47f0                  _BufferA
 
-.nbss               0x0800         0x16
- .nbss              0x0800         0x16 build/default/production/main.o
-                    0x0800                  _i
+.nbss               0x0800         0x18
+ .nbss              0x0800         0x18 build/default/production/main.o
+                    0x0800                  _kupa
                     0x0802                  _kutas
-                    0x0804                  _cipa
-                    0x0806                  _pipa
-                    0x0808                  _pipa1
-                    0x080a                  _zero
-                    0x080c                  _pipa_q6
-                    0x0810                  _OP_FM_state
-                    0x0812                  _k
-                    0x0814                  _trig
+                    0x0803                  _moc
+                    0x0804                  _i
+                    0x0806                  _cipa
+                    0x0808                  _pipa
+                    0x080a                  _pipa1
+                    0x080c                  _zero
+                    0x080e                  _pipa_q6
+                    0x0812                  _OP_FM_state
+                    0x0814                  _k
+                    0x0816                  _trig
 
-.bss                0x0816       0x190c
- .bss               0x0816       0x190c build/default/production/main.o
-                    0x0816                  _AnalogInput
-                    0x0826                  _sins_table
-                    0x1026                  _saw_table
-                    0x1826                  _triangle_table
-                    0x2026                  _phase
-                    0x2032                  _op_fm
+.bss                0x0818       0x1914
+ .bss               0x0818       0x1914 build/default/production/main.o
+                    0x0818                  _AnalogInput
+                    0x0828                  _sins_table
+                    0x1028                  _saw_table
+                    0x1828                  _triangle_table
+                    0x2028                  _phase
+                    0x2034                  _RX_BUFF
+                    0x203c                  _op_fm
 
 .config_JTAGEN    0xf8000e          0x2
  .config_JTAGEN
@@ -1460,6 +1473,11 @@ _06A4AA805b9243f3
  .ivt._DAC1RInterrupt
                   0x0000b0          0x2 build/default/production/main.o
 
+.ivt._U1RXInterrupt
+                  0x00002a          0x2
+ .ivt._U1RXInterrupt
+                  0x00002a          0x2 build/default/production/main.o
+
 .ivt._DAC1LInterrupt
                   0x0000b2          0x2
  .ivt._DAC1LInterrupt
@@ -1475,18 +1493,18 @@ _06A4AA805b9243f3
  .ivt._DMA0Interrupt
                   0x00001c          0x2 build/default/production/main.o
 
-.text             0x000432        0x492
- .text            0x000432        0x366 build/default/production/main.o
-                  0x000432                  _main
-                  0x000564                  _dds_arrays_prep
-                  0x000592                  _get_op_output
-                  0x00059e                  _OP_FM
-                  0x00071e                  _sample
-                  0x00078e                  _wave_assemble
- .text            0x000798        0x12c build/default/production/conf.o
-                  0x000798                  _ExampleLocalFunction
-                  0x0007a2                  _filtr
-                  0x0007ac                  _config
+.text             0x000468        0x4c0
+ .text            0x000468        0x364 build/default/production/main.o
+                  0x000468                  _main
+                  0x000598                  _dds_arrays_prep
+                  0x0005c6                  _get_op_output
+                  0x0005d2                  _OP_FM
+                  0x000752                  _sample
+                  0x0007c2                  _wave_assemble
+ .text            0x0007cc        0x15c build/default/production/conf.o
+                  0x0007cc                  _ExampleLocalFunction
+                  0x0007d6                  _filtr
+                  0x0007e0                  _config
 
-.dinit            0x0008c4         0x14
- .dinit           0x0008c4         0x14 data_init
+.dinit            0x000928         0x14
+ .dinit           0x000928         0x14 data_init

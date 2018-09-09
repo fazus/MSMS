@@ -1,5 +1,9 @@
 #include <xc.h>
-
+#include <limits.h>
+#include <dsp.h>
+#include <math.h>
+#include <libq.h>
+#include "conf.h"
 
 #pragma config BWRP = WRPROTECT_OFF    // Boot Segment Write Protect (Boot Segment may be written)
 #pragma config BSS = NO_FLASH           // Boot Segment Program Flash Code Protection (No Boot program Flash segment)
@@ -24,8 +28,8 @@
 #pragma config ICS = PGD1               // Comm Channel Select (Communicate on PGC1/EMUC1 and PGD1/EMUD1)
 #pragma config JTAGEN = OFF             // JTAG Port Enable (JTAG is Disabled)
  
-
-
+    int kupa=0;
+char kutas=0;
 
 int BufferA[8] __attribute__((space(dma)));
 int AnalogInput[8];
@@ -37,8 +41,8 @@ _Q15 triangle_table[1024];
 _Q16 phase[3] ={0, 0, 0,};
 _Q15 sample(_Q15 we, unsigned short with);
 
-
- 
+char RX_BUFF[8];
+char moc=0;
 
 typedef struct{
     
@@ -72,7 +76,7 @@ fm_op_type op_fm[6];
 _Q15 OP_FM(fm_op_type *op);
 _Q15 get_op_output(fm_op_type *op);
 int i;
-    int kutas,cipa;
+    int cipa;
     
 
 _Q15 pipa,pipa1;
@@ -112,7 +116,7 @@ int main(void) {
 
     
     op_fm[0].IN1=&pipa;
-    op_fm[0].IN2=0;
+    op_fm[0].IN2=&pipa1;
     
 
     
@@ -120,12 +124,14 @@ int main(void) {
     
     for(k=0;k<6;k++)op_fm[k].output_gain = 0;
     
-    int kupa;
+
 while(1) {
-    pipa1=pipa*2;
+    pipa1=2250;
     pipa=2200;
+    
     if(i>22000){
     i=0;
+    
        trig = 1; 
 
 
@@ -152,14 +158,22 @@ void __attribute__((interrupt, no_auto_psv))_DAC1RInterrupt(void)
     i++;
 IFS4bits.DAC1RIF = 0;                    /* Clear Right Channel Interrupt Flag */
    // for(k=0;k<6;k++)
+
 OP_FM(&op_fm[0]);
-     DAC1RDAT =  get_op_output(&op_fm[0]);//AnalogInput[0]<<4;
-     DAC1LDAT =0;// = AnalogInput[2];// sample(10,0,0);
+     DAC1RDAT = AnalogInput[0]<<4;
+     DAC1LDAT =get_op_output(&op_fm[0]);// = AnalogInput[2];// sample(10,0,0);
 }
 
 
 
-
+void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)
+{
+    
+    RX_BUFF[moc++]=0xFF&U1RXREG;
+    if(U1RXREG&0x100){moc=0;}
+    
+    IFS0bits.U1RXIF = 0;   
+}
 _Q15 get_op_output(fm_op_type *op){return (*op).OUT;}
 
 

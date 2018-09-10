@@ -86,11 +86,11 @@ Program Memory  [Origin = 0x200, Length = 0x15600]
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x268           0x39c  (924)
-.text                        0x468               0x4c0           0x720  (1824)
-.dinit                       0x928                0x14            0x1e  (30)
+.text                        0x200               0x272           0x3ab  (939)
+.text                        0x472               0x4b4           0x70e  (1806)
+.dinit                       0x926                0x14            0x1e  (30)
 
-                 Total program memory used (bytes):          0xada  (2778) 2%
+                 Total program memory used (bytes):          0xad7  (2775) 2%
 
 
 Ivt Memory  [Origin = 0x4, Length = 0xfc]
@@ -110,7 +110,7 @@ section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss                        0x800                   0            0x18  (24)
 .bss                         0x818                   0          0x1914  (6420)
-_069AAB405b9544ff           0x47f0                   0            0x10  (16)
+_0697AB405b959347           0x47f0                   0            0x10  (16)
 
                  Total data memory used (bytes):         0x193c  (6460) 39%
 
@@ -178,54 +178,54 @@ External Symbols in Program Memory (by address):
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
                   0x0002c8                  __DAC1RInterrupt
-                  0x0002fa                  __U1RXInterrupt
-                  0x00032e                  __DAC1LInterrupt
-                  0x000336                  __ADC1Interrupt
-                  0x00033e                  __DMA0Interrupt
-                  0x000366                  __DefaultInterrupt
-                  0x00036a                  __Q15add
-                  0x000376                  __Q15sinPI
-                  0x000450                  __Q16mpy
-                  0x000468                  _main
-                  0x000598                  _dds_arrays_prep
-                  0x0005c6                  _get_op_output
-                  0x0005d2                  _OP_FM
-                  0x000752                  _sample
-                  0x0007c2                  _wave_assemble
-                  0x0007cc                  _ExampleLocalFunction
-                  0x0007d6                  _filtr
-                  0x0007e0                  _config
+                  0x000300                  __U1RXInterrupt
+                  0x000338                  __DAC1LInterrupt
+                  0x000340                  __ADC1Interrupt
+                  0x000348                  __DMA0Interrupt
+                  0x000370                  __DefaultInterrupt
+                  0x000374                  __Q15add
+                  0x000380                  __Q15sinPI
+                  0x00045a                  __Q16mpy
+                  0x000472                  _main
+                  0x0005a8                  _dds_arrays_prep
+                  0x0005d6                  _get_op_output
+                  0x0005e2                  _OP_FM
+                  0x000762                  _sample
+                  0x0007d2                  _wave_assemble
+                  0x0007dc                  _ExampleLocalFunction
+                  0x0007e6                  _filtr
+                  0x0007f0                  _config
                   0xf80000                  __FBS.sec
                   0xf80002                  __FSS.sec
                   0xf80004                  __FGS.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x0007cc                  _ExampleLocalFunction
-                  0x0005d2                  _OP_FM
-                  0x000336                  __ADC1Interrupt
-                  0x00032e                  __DAC1LInterrupt
+                  0x0007dc                  _ExampleLocalFunction
+                  0x0005e2                  _OP_FM
+                  0x000340                  __ADC1Interrupt
+                  0x000338                  __DAC1LInterrupt
                   0x0002c8                  __DAC1RInterrupt
-                  0x00033e                  __DMA0Interrupt
-                  0x000366                  __DefaultInterrupt
+                  0x000348                  __DMA0Interrupt
+                  0x000370                  __DefaultInterrupt
                   0xf80000                  __FBS.sec
                   0xf80004                  __FGS.sec
                   0xf80002                  __FSS.sec
-                  0x00036a                  __Q15add
-                  0x000376                  __Q15sinPI
-                  0x000450                  __Q16mpy
-                  0x0002fa                  __U1RXInterrupt
+                  0x000374                  __Q15add
+                  0x000380                  __Q15sinPI
+                  0x00045a                  __Q16mpy
+                  0x000300                  __U1RXInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0007e0                  _config
-                  0x000598                  _dds_arrays_prep
-                  0x0007d6                  _filtr
-                  0x0005c6                  _get_op_output
-                  0x000468                  _main
-                  0x000752                  _sample
-                  0x0007c2                  _wave_assemble
+                  0x0007f0                  _config
+                  0x0005a8                  _dds_arrays_prep
+                  0x0007e6                  _filtr
+                  0x0005d6                  _get_op_output
+                  0x000472                  _main
+                  0x000762                  _sample
+                  0x0007d2                  _wave_assemble
 
 Memory Configuration
 
@@ -286,7 +286,7 @@ LOAD c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x268
+.text             0x000200        0x272
  *(.init)
  .init            0x000200         0x4c c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -298,28 +298,28 @@ LOAD c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002c8         0x9e build/default/production/main.o
+ .isr.text        0x0002c8         0xa8 build/default/production/main.o
                   0x0002c8                  __DAC1RInterrupt
-                  0x0002fa                  __U1RXInterrupt
-                  0x00032e                  __DAC1LInterrupt
-                  0x000336                  __ADC1Interrupt
-                  0x00033e                  __DMA0Interrupt
- .isr             0x000366          0x4 default_isr
-                  0x000366                  __DefaultInterrupt
+                  0x000300                  __U1RXInterrupt
+                  0x000338                  __DAC1LInterrupt
+                  0x000340                  __ADC1Interrupt
+                  0x000348                  __DMA0Interrupt
+ .isr             0x000370          0x4 default_isr
+                  0x000370                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
- .libq            0x00036a          0xc C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_Add_1_15.eo)
-                  0x00036a                  __Q15add
- .libq            0x000376         0xda C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_SinPI_1_15.eo)
-                  0x000376                  sinPI::sinPI(void)
- .libqn           0x000450         0x16 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(mpy16.eo)
-                  0x000450                  __Q16mpy
+ .libq            0x000374          0xc C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_Add_1_15.eo)
+                  0x000374                  __Q15add
+ .libq            0x000380         0xda C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_SinPI_1_15.eo)
+                  0x000380                  sinPI::sinPI(void)
+ .libqn           0x00045a         0x16 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(mpy16.eo)
+                  0x00045a                  __Q16mpy
  .libpic30_crt_start_mode
-                  0x000466          0x2 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
-                  0x000466                  __crt_start_mode
-                  0x000466                  __crt_start_mode_normal
+                  0x000470          0x2 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normal.Leo)
+                  0x000470                  __crt_start_mode
+                  0x000470                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -369,10 +369,10 @@ __FUID3
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x2e91
+.debug_info       0x000000       0x2fc4
  *(.debug_info)
- .debug_info      0x000000       0x22fc build/default/production/conf.o
- .debug_info      0x0022fc        0xb95 build/default/production/main.o
+ .debug_info      0x000000       0x2418 build/default/production/conf.o
+ .debug_info      0x002418        0xbac build/default/production/main.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x2da
@@ -380,20 +380,20 @@ __FUID3
  .debug_abbrev    0x000000         0xe0 build/default/production/conf.o
  .debug_abbrev    0x0000e0        0x1fa build/default/production/main.o
 
-.debug_line       0x000000        0x264
+.debug_line       0x000000        0x26e
  *(.debug_line)
- .debug_line      0x000000         0xe1 build/default/production/conf.o
- .debug_line      0x0000e1        0x183 build/default/production/main.o
+ .debug_line      0x000000         0xeb build/default/production/conf.o
+ .debug_line      0x0000eb        0x183 build/default/production/main.o
 
 .debug_frame      0x000000        0x1fe
  *(.debug_frame)
  .debug_frame     0x000000         0x68 build/default/production/conf.o
  .debug_frame     0x000068        0x196 build/default/production/main.o
 
-.debug_str        0x000000        0x150
+.debug_str        0x000000        0x15b
  *(.debug_str)
- .debug_str       0x000000        0x109 build/default/production/conf.o
- .debug_str       0x000109         0x47 build/default/production/main.o
+ .debug_str       0x000000        0x114 build/default/production/conf.o
+ .debug_str       0x000114         0x47 build/default/production/main.o
 
 .debug_loc
  *(.debug_loc)
@@ -1396,32 +1396,32 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000030        0x393
+                  0x000030        0x3b4
  .debug_pubtypes
-                  0x000030        0x2e0 build/default/production/conf.o
+                  0x000030        0x301 build/default/production/conf.o
  .debug_pubtypes
-                  0x000310         0xb3 build/default/production/main.o
+                  0x000331         0xb3 build/default/production/main.o
 
 __c30_signature
-                  0x0003c3         0x2a
+                  0x0003e4         0x2a
  __c30_signature
-                  0x0003c3          0x6 build/default/production/conf.o
+                  0x0003e4          0x6 build/default/production/conf.o
  __c30_signature
-                  0x0003c9          0x6 build/default/production/main.o
+                  0x0003ea          0x6 build/default/production/main.o
  __c30_signature
-                  0x0003cf          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_Add_1_15.eo)
+                  0x0003f0          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_Add_1_15.eo)
  __c30_signature
-                  0x0003d5          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_SinPI_1_15.eo)
+                  0x0003f6          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(PIC_SinPI_1_15.eo)
  __c30_signature
-                  0x0003db          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(mpy16.eo)
+                  0x0003fc          0x6 C:\Program Files (x86)\Microchip\xc16\v1.32\lib\libq-elf.a(mpy16.eo)
  __c30_signature
-                  0x0003e1          0x6 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x000402          0x6 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x0003e7          0x6 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x000408          0x6 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
 
-_069AAB405b9544ff
+_0697AB405b959347
                     0x47f0         0x10
- _069AAB405b9544ff
+ _0697AB405b959347
                     0x47f0         0x10 build/default/production/main.o
                     0x47f0                  _BufferA
 
@@ -1493,18 +1493,18 @@ _069AAB405b9544ff
  .ivt._DMA0Interrupt
                   0x00001c          0x2 build/default/production/main.o
 
-.text             0x000468        0x4c0
- .text            0x000468        0x364 build/default/production/main.o
-                  0x000468                  _main
-                  0x000598                  _dds_arrays_prep
-                  0x0005c6                  _get_op_output
-                  0x0005d2                  _OP_FM
-                  0x000752                  _sample
-                  0x0007c2                  _wave_assemble
- .text            0x0007cc        0x15c build/default/production/conf.o
-                  0x0007cc                  _ExampleLocalFunction
-                  0x0007d6                  _filtr
-                  0x0007e0                  _config
+.text             0x000472        0x4b4
+ .text            0x000472        0x36a build/default/production/main.o
+                  0x000472                  _main
+                  0x0005a8                  _dds_arrays_prep
+                  0x0005d6                  _get_op_output
+                  0x0005e2                  _OP_FM
+                  0x000762                  _sample
+                  0x0007d2                  _wave_assemble
+ .text            0x0007dc        0x14a build/default/production/conf.o
+                  0x0007dc                  _ExampleLocalFunction
+                  0x0007e6                  _filtr
+                  0x0007f0                  _config
 
-.dinit            0x000928         0x14
- .dinit           0x000928         0x14 data_init
+.dinit            0x000926         0x14
+ .dinit           0x000926         0x14 data_init

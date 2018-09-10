@@ -126,12 +126,12 @@ int main(void) {
     
 
 while(1) {
-    pipa1=2250;
+    pipa1= RX_BUFF[0]*4;
     pipa=2200;
     
     if(i>22000){
     i=0;
-    
+   
        trig = 1; 
 
 
@@ -161,7 +161,7 @@ IFS4bits.DAC1RIF = 0;                    /* Clear Right Channel Interrupt Flag *
 
 OP_FM(&op_fm[0]);
      DAC1RDAT = AnalogInput[0]<<4;
-     DAC1LDAT =get_op_output(&op_fm[0]);// = AnalogInput[2];// sample(10,0,0);
+     DAC1LDAT =kupa*get_op_output(&op_fm[0]);// = AnalogInput[2];// sample(10,0,0);
 }
 
 
@@ -170,7 +170,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)
 {
     
     RX_BUFF[moc++]=0xFF&U1RXREG;
-    if(U1RXREG&0x100){moc=0;}
+    if(U1RXREG&0x100){moc=0;kupa=1;}
     
     IFS0bits.U1RXIF = 0;   
 }

@@ -7,9 +7,8 @@
 #include <xc.h> // include processor files - each processor file is guarded.  
 
 
-#define CPU_CLOCK          (73728000ul)
-#define PBUS_CLOCK         (CPU_CLOCK/2)
-#define UBRG(baud) (((PBUS_CLOCK)/4/(baud)-1))
+#define FCY 40000000ULL
+#define UBRG(baud)  ((FCY/baud)/16)-1
 #define UART1_BAUD           9600 
 
 

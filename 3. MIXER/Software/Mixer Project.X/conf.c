@@ -20,14 +20,27 @@ void config(void){
     TRISBbits.TRISB6 = 0;
     LATBbits.LATB6 = 0;
 
- CLKDIVbits.PLLPRE = 0; // N1=2 and N1 = PLLPRE + 2, gives FREF = 7.3728/2 = 3.6864 
- PLLFBD = 40; // M=40 gives FVCO = 40 * 3.6864 = 147.456 MHz.
+    //Setting N1 to 4 (N1 = n+2); n = N1-2
+    CLKDIVbits.PLLPRE0 = 0;
+    CLKDIVbits.PLLPRE1 = 1;
+    CLKDIVbits.PLLPRE2 = 0;
+    CLKDIVbits.PLLPRE3 = 0;
+    CLKDIVbits.PLLPRE4 = 0;
 
- CLKDIVbits.PLLPOST = 0; // N2=2 and N2 = 2 * (PLLPOST + 1)
-    // This gives FOSC = FVCO/2 = 73.728 MHz, FCY = FOCS/2 = 36.864 MHz, 37 MIPS
- OSCTUN = 0; // No tuning of the oscillator is required
- __builtin_write_OSCCONH(0x01); /* Initiate Clock Switch to FRC with PLL*/
- __builtin_write_OSCCONL(0x01);
+    //Setting M to 32 (M = m+2); m = M-2
+    PLLFBDbits.PLLDIV0 = 0;
+    PLLFBDbits.PLLDIV1 = 1;
+    PLLFBDbits.PLLDIV2 = 1;
+    PLLFBDbits.PLLDIV3 = 1;
+    PLLFBDbits.PLLDIV4 = 1;
+    PLLFBDbits.PLLDIV5 = 0;
+    PLLFBDbits.PLLDIV6 = 0;
+    PLLFBDbits.PLLDIV7 = 0;
+    PLLFBDbits.PLLDIV8 = 0;
+
+    //Setting N2 to 2
+    CLKDIVbits.PLLPOST0 = 0;
+    CLKDIVbits.PLLPOST1 = 0;
 
  while (OSCCONbits.COSC != 0b01); /* Wait for Clock switch to occur */
  while(!OSCCONbits.LOCK);

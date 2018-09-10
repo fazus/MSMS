@@ -41,7 +41,7 @@ _Q15 triangle_table[1024];
 _Q16 phase[3] ={0, 0, 0,};
 _Q15 sample(_Q15 we, unsigned short with);
 
-char RX_BUFF[8];
+char RX_BUFF[64];
 char moc=0;
 
 typedef struct{

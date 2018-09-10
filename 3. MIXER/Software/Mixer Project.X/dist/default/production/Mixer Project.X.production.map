@@ -109,10 +109,10 @@ Data Memory  [Origin = 0x800, Length = 0x4000]
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
 .nbss                        0x800                   0            0x18  (24)
-.bss                         0x818                   0          0x1914  (6420)
-_069D7B405b968c77           0x47f0                   0            0x10  (16)
+.bss                         0x818                   0          0x194c  (6476)
+_06A66B405b96aeb4           0x47f0                   0            0x10  (16)
 
-                 Total data memory used (bytes):         0x193c  (6460) 39%
+                 Total data memory used (bytes):         0x1974  (6516) 39%
 
 
 Dynamic Memory Usage
@@ -120,9 +120,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x212c                              0x26c4  (9924)
+stack                       0x2164                              0x268c  (9868)
 
-                 Maximum dynamic memory (bytes):         0x26c4  (9924)
+                 Maximum dynamic memory (bytes):         0x268c  (9868)
 
 
 External Symbols in Data Memory (by address):
@@ -145,7 +145,7 @@ External Symbols in Data Memory (by address):
                     0x1828                  _triangle_table
                     0x2028                  _phase
                     0x2034                  _RX_BUFF
-                    0x203c                  _op_fm
+                    0x2074                  _op_fm
                     0x47f0                  _BufferA
 
 External Symbols in Data Memory (by name):
@@ -160,7 +160,7 @@ External Symbols in Data Memory (by name):
                     0x0800                  _kupa
                     0x0802                  _kutas
                     0x0803                  _moc
-                    0x203c                  _op_fm
+                    0x2074                  _op_fm
                     0x2028                  _phase
                     0x0808                  _pipa
                     0x080a                  _pipa1
@@ -1419,9 +1419,9 @@ __c30_signature
  __c30_signature
                   0x0003c6          0x6 c:/program files (x86)/microchip/xc16/v1.32/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
 
-_069D7B405b968c77
+_06A66B405b96aeb4
                     0x47f0         0x10
- _069D7B405b968c77
+ _06A66B405b96aeb4
                     0x47f0         0x10 build/default/production/main.o
                     0x47f0                  _BufferA
 
@@ -1440,15 +1440,15 @@ _069D7B405b968c77
                     0x0814                  _k
                     0x0816                  _trig
 
-.bss                0x0818       0x1914
- .bss               0x0818       0x1914 build/default/production/main.o
+.bss                0x0818       0x194c
+ .bss               0x0818       0x194c build/default/production/main.o
                     0x0818                  _AnalogInput
                     0x0828                  _sins_table
                     0x1028                  _saw_table
                     0x1828                  _triangle_table
                     0x2028                  _phase
                     0x2034                  _RX_BUFF
-                    0x203c                  _op_fm
+                    0x2074                  _op_fm
 
 .config_JTAGEN    0xf8000e          0x2
  .config_JTAGEN

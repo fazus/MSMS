@@ -197,7 +197,7 @@ void update_LCD(void);
 #define UBRG(baud)  ((FCY/baud)/16)-1
 #define UART1_BAUD           9600 
 
-short UART_TX[8];
+short UART_TX[64];
 char UART_RX[64];
 char burnox=0;
 int kutasss=0;
@@ -233,7 +233,7 @@ void main(void){
             if(chuj>100){chuj=0;
        
             for(k=0;k<8;k++) UART_TX[k]=enc_value[k];
-            UART_TX[7]|=0x100;
+            UART_TX[63]|=0x100;
         
         if(slide_sw_reg&0x01 && burnox==0)
         {
@@ -310,7 +310,7 @@ void dma_init(void){
     DCH1ECONbits.SIRQEN = 1;
     DCH1DSA=KVA_TO_PA(&U1TXREG);
     DCH1SSA = KVA_TO_PA(&UART_TX[0]);
-    DCH1SSIZ=16;
+    DCH1SSIZ=128;
     DCH1DSIZ=2;
     DCH1CSIZ=2;
     

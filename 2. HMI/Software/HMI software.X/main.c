@@ -8,9 +8,9 @@
 #pragma config IOL1WAY = OFF             // Peripheral Pin Select Configuration (Allow only one reconfiguration)
 
 // DEVCFG2
-#pragma config FPLLIDIV = DIV_1       // PLL Input Divider (12x Divider)
+#pragma config FPLLIDIV = DIV_2       // PLL Input Divider (12x Divider)
 #pragma config FPLLMUL = MUL_20        // PLL Multiplier (24x Multiplier)
-#pragma config FPLLODIV = DIV_2     // System PLL Output Clock Divider (PLL Divide by 256)
+#pragma config FPLLODIV = DIV_2    // System PLL Output Clock Divider (PLL Divide by 256)
 
 // DEVCFG1
 #pragma config FNOSC = FRCPLL           // Oscillator Selection Bits (Fast RC Osc with PLL)
@@ -340,7 +340,7 @@ void inicjalizacja(void){
     U1RXR=0; //RPA2 UART RX
 
     U1MODE = 0;   
-    U1BRG = UBRG(UART1_BAUD); 
+    U1BRG = 1;//UBRG(UART1_BAUD); 
 
 
     IFS1bits.U1TXIF = 0; 

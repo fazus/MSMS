@@ -20,31 +20,10 @@ void config(void){
     TRISBbits.TRISB6 = 0;
     LATBbits.LATB6 = 0;
 
-    //Setting N1 to 4 (N1 = n+2); n = N1-2
-    CLKDIVbits.PLLPRE0 = 0;
-    CLKDIVbits.PLLPRE1 = 1;
-    CLKDIVbits.PLLPRE2 = 0;
-    CLKDIVbits.PLLPRE3 = 0;
-    CLKDIVbits.PLLPRE4 = 0;
 
-    //Setting M to 32 (M = m+2); m = M-2
-    PLLFBDbits.PLLDIV0 = 0;
-    PLLFBDbits.PLLDIV1 = 1;
-    PLLFBDbits.PLLDIV2 = 1;
-    PLLFBDbits.PLLDIV3 = 1;
-    PLLFBDbits.PLLDIV4 = 1;
-    PLLFBDbits.PLLDIV5 = 0;
-    PLLFBDbits.PLLDIV6 = 0;
-    PLLFBDbits.PLLDIV7 = 0;
-    PLLFBDbits.PLLDIV8 = 0;
-
-    //Setting N2 to 2
-    CLKDIVbits.PLLPOST0 = 0;
-    CLKDIVbits.PLLPOST1 = 0;
-
- while (OSCCONbits.COSC != 0b01); /* Wait for Clock switch to occur */
- while(!OSCCONbits.LOCK);
- 
+     PLLFBD=41;     // M=43
+ CLKDIVbits.PLLPOST=0;  // N1=2
+ CLKDIVbits.PLLPRE=0;  // N2=2
 
     ACLKCONbits.SELACLK = 0; // FRC + PLL as clock
     ACLKCONbits.AOSCMD = 0; // Disable ACLK (PLL used instead)
@@ -125,14 +104,14 @@ void config(void){
     RPINR18bits.U1RXR = 9; 
     
 
-    U1BRG=UBRG(UART1_BAUD);
+    U1BRG=1;//UBRG(UART1_BAUD);
     U1STAbits.URXISEL = 0;
     IPC2bits.U1RXIP = 2;
     IFS0bits.U1RXIF = 0;
     U1MODEbits.PDSEL=3;
     
     U1MODEbits.UARTEN = 1;
-;
+
         
     IFS0bits.U1RXIF = 0;
     IEC0bits.U1RXIE = 1;

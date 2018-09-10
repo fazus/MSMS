@@ -27,7 +27,7 @@
 #pragma config ALTI2C = OFF             // Alternate I2C  pins (I2C mapped to SDA1/SCL1 pins)
 #pragma config ICS = PGD1               // Comm Channel Select (Communicate on PGC1/EMUC1 and PGD1/EMUD1)
 #pragma config JTAGEN = OFF             // JTAG Port Enable (JTAG is Disabled)
- 
+
     int kupa=0;
 char kutas=0;
 
@@ -126,8 +126,8 @@ int main(void) {
     
 
 while(1) {
-    pipa1= RX_BUFF[0]*4;
-    pipa=2200;
+    pipa1=2200; 
+    pipa=RX_BUFF[2]*500;
     
     if(i>22000){
     i=0;
@@ -168,10 +168,10 @@ OP_FM(&op_fm[0]);
 
 void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)
 {
-    
-    RX_BUFF[moc++]=0xFF&U1RXREG;
-    if(U1RXREG&0x100){moc=0;kupa=1;}
-    
+    short rx_buff = U1RXREG;
+    RX_BUFF[moc++]=0xFF&rx_buff;
+    if(rx_buff&0x100){moc=0;}
+    if(RX_BUFF[0]==15)kupa=1;
     IFS0bits.U1RXIF = 0;   
 }
 _Q15 get_op_output(fm_op_type *op){return (*op).OUT;}

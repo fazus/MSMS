@@ -3,8 +3,8 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>Mixer_software</name>
-            <creation-uuid>da6ce6da-764b-45ea-9504-964601659c2c</creation-uuid>
+            <name>WG_software</name>
+            <creation-uuid>9fa7e0de-89e9-4757-8b27-0b63a24e8a47</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions>c</c-extensions>
             <cpp-extensions/>

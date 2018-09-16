@@ -100,11 +100,11 @@ void config(void){
     IEC0bits.DMA0IE = 1;   //Set the DMA interrupt enable bit
     
    
-    TRISBbits.TRISB9 = 0; // UART1 RX
+    TRISBbits.TRISB9 = 1; // UART1 RX
     RPINR18bits.U1RXR = 9; 
     
 
-    U1BRG=1;//UBRG(UART1_BAUD);
+    U1BRG = UBRG(UART1_BAUD);
     U1STAbits.URXISEL = 0;
     IPC2bits.U1RXIP = 2;
     IFS0bits.U1RXIF = 0;
@@ -115,5 +115,18 @@ void config(void){
         
     IFS0bits.U1RXIF = 0;
     IEC0bits.U1RXIE = 1;
+    
+    
+   RPINR20bits.SDI1R = 6;//SDO1
+   RPINR21bits.SS1R = 7; //SS1
+    RPINR20bits.SCK1R = 8; //SCK1  
+    
+  SPI1CON2bits.FRMEN = 1;
+   SPI1CON2bits.FRMPOL = 0;
+   SPI1CON2bits.SPIFSD=0;
+  SPI1CON1bits.MODE16 = 1;          // Communication is word-wide (16 bits)    
+  SPI1CON1bits.MSTEN = 0;           // Master mode enabled
+  SPI1STATbits.SPIEN = 1;           // Enable SPI module
+
     
 }

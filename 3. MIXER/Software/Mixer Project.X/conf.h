@@ -11,7 +11,7 @@
 
 #define FCY 40000000ULL
 #define UBRG(baud)  ((FCY/baud)/16)-1
-#define UART1_BAUD           9600 
+#define UART1_BAUD           800000 
 
 
 int ExampleLocalFunction(int param1);

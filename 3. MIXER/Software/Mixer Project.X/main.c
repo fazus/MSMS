@@ -87,6 +87,10 @@ _Q15 wave_assemble(unsigned short with);
 char OP_FM_state=0;
 int k;
 char trig;
+
+
+short digital_audio_input = 0;
+
 int main(void) {
     
     
@@ -128,7 +132,7 @@ int main(void) {
 while(1) {
     pipa1=2200; 
     pipa=RX_BUFF[2]*500;
-    
+   if(SPI1STATbits.SPIRBF)digital_audio_input=SPI1BUF;
     if(i>22000){
     i=0;
    
@@ -160,7 +164,7 @@ IFS4bits.DAC1RIF = 0;                    /* Clear Right Channel Interrupt Flag *
    // for(k=0;k<6;k++)
 
 OP_FM(&op_fm[0]);
-     DAC1RDAT = AnalogInput[0]<<4;
+     DAC1RDAT = digital_audio_input;
      DAC1LDAT =kupa*get_op_output(&op_fm[0]);// = AnalogInput[2];// sample(10,0,0);
 }
 
@@ -172,6 +176,7 @@ void __attribute__((__interrupt__,__auto_psv__)) _U1RXInterrupt(void)
     RX_BUFF[moc++]=0xFF&rx_buff;
     if(rx_buff&0x100){moc=0;}
     if(RX_BUFF[0]==15)kupa=1;
+    if(RX_BUFF[0]==16)kupa=0;
     IFS0bits.U1RXIF = 0;   
 }
 _Q15 get_op_output(fm_op_type *op){return (*op).OUT;}
